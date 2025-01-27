@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package graph;
+
+option go_package = "graphlink/pkg/api/graph"; // Updated go_package
+
+service GraphService {
+  rpc CreateUserNode(CreateUserNodeRequest) returns (CreateUserNodeResponse) {}
+  rpc DeleteUserNode(DeleteUserNodeRequest) returns (DeleteUserNodeResponse) {}
+  rpc ConnectUsers(ConnectUsersRequest) returns (ConnectUsersResponse) {}
+  rpc DisconnectUsers(DisconnectUsersRequest) returns (DisconnectUsersResponse) {}
+  rpc GetConnectedUsers(GetConnectedUsersRequest) returns (GetConnectedUsersResponse) {}
+  rpc CheckConnectionPath(CheckConnectionPathRequest) returns (CheckConnectionPathResponse) {}
+}
+
+message CreateUserNodeRequest {
+  string user_id = 1;
+  string name = 2;
+}
+
+message CreateUserNodeResponse {
+  bool success = 1;
+}
+
+message DeleteUserNodeRequest {
+  string user_id = 1;
+}
+
+message DeleteUserNodeResponse {
+  bool success = 1;
+}
+
+message ConnectUsersRequest {
+  string user_id_1 = 1;
+  string user_id_2 = 2;
+}
+
+message ConnectUsersResponse {
+  bool success = 1;
+}
+
+message DisconnectUsersRequest {
+  string user_id_1 = 1;
+  string user_id_2 = 2;
+}
+
+message DisconnectUsersResponse {
+  bool success = 1;
+}
+
+message GetConnectedUsersRequest {
+  string user_id = 1;
+}
+
+message GetConnectedUsersResponse {
+  repeated string connected_user_ids = 1;
+}
+
+message CheckConnectionPathRequest {
+  string user_id_1 = 1;
+  string user_id_2 = 2;
+}
+
+message CheckConnectionPathResponse {
+  bool path_exists = 1;
+}
